@@ -1,5 +1,25 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
 {{outlet}}
+
+<h1>Profile</h1>
+
+{{input value=model.name type="text" placeholder="Name" autofocus="autofocus"}}
+
+{{#file-picker fileLoaded="photoAdded" readAs="readAsFile" accept="image/*"}}
+  <button type="button" name="button">Drag here or click to upload a photo</button>
+{{/file-picker}}
+
+{{#file-picker fileLoaded="galleryAdded" readAs="readAsFile" accept="image/*"}}
+  <button type="button" name="button">Drag here or click to upload to gallery</button>
+{{/file-picker}}
+
+<button {{action 'save' model}} class="save" type="button" name="button">Save</button>
+
+<hr>
+
+<ul>
+  {{#each profiles as |profile|}}
+  {{log profile}}
+    <li>{{profile.name}}</li>
+    {{!-- <img src="{}" alt=""> --}}
+  {{/each}}
+</ul>
