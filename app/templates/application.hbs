@@ -4,11 +4,11 @@
 
 {{input value=model.name type="text" placeholder="Name" autofocus="autofocus"}}
 
-{{#file-picker fileLoaded="photoAdded" readAs="readAsFile" accept="image/*"}}
+{{#file-picker fileLoaded="photoAdded" readAs="readAsDataURL" preview=false accept="image/*"}}
   <button type="button" name="button">Click to upload a photo</button>
 {{/file-picker}}
 
-{{#file-picker fileLoaded="galleryAdded" readAs="readAsFile" accept="image/*"}}
+{{#file-picker fileLoaded="galleryAdded" readAs="readAsDataURL" preview=false accept="image/*"}}
   <button type="button" name="button">Click to upload to gallery</button>
 {{/file-picker}}
 
@@ -16,10 +16,14 @@
 
 <hr>
 
-<ul>
+<dl>
   {{#each profiles as |profile|}}
-  {{log profile}}
-    <li>{{profile.name}}</li>
-    {{!-- <img src="{}" alt=""> --}}
+  {{!-- {{log profile}} --}}
+    <dt>{{profile.name}}</dt>
+    <dd class="images-container">
+      {{#each profile.photo as |photo|}}
+        <img height="60px" width="80px" src="{{photo.data}}" alt="{{profile.name}}">
+      {{/each}}
+    </dd>
   {{/each}}
-</ul>
+</dl>

@@ -20,28 +20,28 @@ export default Ember.Route.extend({
     photoAdded(file) {
       const profile = this.controller.get('model');
       const selections = Ember.get(profile, 'photo');
-      Ember.Logger.debug(file);
+      // Ember.Logger.debug(file);
 
       selections.addObject(Ember.Object.create({
         'name' : file.name,
         'content_type' : file.type,
-        'data' : file
+        'data' : file.data
       }));
-      Ember.Logger.debug(profile);
+      // Ember.Logger.debug(profile);
       profile.save();
     },
 
     galleryAdded(file) {
       const profile = this.controller.get('model');
       const selections = Ember.get(profile, 'gallery');
-      Ember.Logger.debug(file);
-      
+      // Ember.Logger.debug(file);
+
       selections.addObject(Ember.Object.create({
         'name' : file.name,
         'content_type' : file.type,
-        'data' : file
+        'data' : file.data
       }));
-      Ember.Logger.debug(profile);
+      // Ember.Logger.debug(profile);
       profile.save();
     },
   }
